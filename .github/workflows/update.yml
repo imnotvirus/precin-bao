@@ -60,13 +60,3 @@ jobs:
           release_name: Release ${{ github.run_number }}
           body: |
             link to download apk: ${{steps.get-apk-url.outputs.apkURL}}
-
-      - name: Upload release assets
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        with:
-          upload_url: ${{steps.get-apk-url.outputs.apkURL}}
-          asset_path: ${{steps.get-apk-url.outputs.apkURL}}
-          asset_name: precin-bao-v${{github.run_number}}.zip
-          asset_content_type: application/zip
