@@ -50,10 +50,11 @@ jobs:
         id: get-apk-url
         run: echo "::set-output name=apkURL::$(eas build:list --json --limit=1 --platform=android | jq '.[0].artifacts.buildUrl')"
 
-      - name: Create GitHub Release
+      - name: Create Release
+        id: create_release
         uses: actions/create-release@v1
-          env:
-            GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.run_number }}
           release_name: Release ${{ github.run_number }}
