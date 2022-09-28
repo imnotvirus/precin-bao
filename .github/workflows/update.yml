@@ -58,6 +58,8 @@ jobs:
         with:
           tag_name: ${{ github.run_number }}
           release_name: Release ${{ github.run_number }}
+          body: |
+            link to download apk: ${{steps.get-apk-url.outputs.apkURL}}
 
       - name: Upload release assets
         uses: actions/upload-release-asset@v1
